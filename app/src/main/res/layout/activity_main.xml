@@ -6,13 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/top_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="?attr/colorPrimaryVariant"
+        android:contentDescription="@string/cloud_image_content_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_cloud_download_24"
+        app:tint="@color/cloud_tint" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/default_padding"
+        app:layout_constraintBottom_toTopOf="@id/download_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_image_view">
+
+        <RadioButton
+            android:id="@+id/radio_option_glide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/download_option_glide" />
+
+        <RadioButton
+            android:id="@+id/radio_option_load_app"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/download_option_load_app" />
+
+        <RadioButton
+            android:id="@+id/radio_option_retrofit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/download_option_retrofit" />
+
+    </RadioGroup>
+
+    <com.udacity.aelzohry.loadapp.LoadingButton
+        android:id="@+id/download_button"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
