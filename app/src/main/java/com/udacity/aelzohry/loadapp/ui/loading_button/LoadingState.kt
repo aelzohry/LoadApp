@@ -1,4 +1,4 @@
-package com.udacity.aelzohry.loadapp
+package com.udacity.aelzohry.loadapp.ui.loading_button
 
 sealed class LoadingState {
     object Loading : LoadingState()

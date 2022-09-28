@@ -5,12 +5,17 @@
 
     <data>
 
+        <import type="com.udacity.aelzohry.loadapp.models.DownloadFile" />
+
+        <variable
+            name="viewModel"
+            type="com.udacity.aelzohry.loadapp.ui.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.main.MainActivity">
 
         <ImageView
             android:id="@+id/top_image_view"
@@ -38,32 +43,40 @@
                 android:id="@+id/radio_option_glide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="@{viewModel.downloadFile == DownloadFile.Glide}"
+                android:onClick="@{() -> viewModel.setDownloadFile(DownloadFile.Glide)}"
                 android:text="@string/download_option_glide" />
 
             <RadioButton
                 android:id="@+id/radio_option_load_app"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="@{viewModel.downloadFile == DownloadFile.LoadApp}"
+                android:onClick="@{() -> viewModel.setDownloadFile(DownloadFile.LoadApp)}"
                 android:text="@string/download_option_load_app" />
 
             <RadioButton
                 android:id="@+id/radio_option_retrofit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="@{viewModel.downloadFile == DownloadFile.Retrofit}"
+                android:onClick="@{() -> viewModel.setDownloadFile(DownloadFile.Retrofit)}"
                 android:text="@string/download_option_retrofit" />
 
         </RadioGroup>
 
-        <com.udacity.aelzohry.loadapp.LoadingButton
+        <com.udacity.aelzohry.loadapp.ui.loading_button.LoadingButton
             android:id="@+id/download_button"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginStart="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginBottom="@dimen/default_margin"
+            android:onClick="@{() -> viewModel.onDownload()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:loadingState="@{viewModel.loadingState}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

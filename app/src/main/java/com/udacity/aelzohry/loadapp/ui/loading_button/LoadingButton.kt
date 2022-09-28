@@ -1,4 +1,4 @@
-package com.udacity.aelzohry.loadapp
+package com.udacity.aelzohry.loadapp.ui.loading_button
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -12,6 +12,7 @@ import android.view.animation.DecelerateInterpolator
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
+import com.udacity.aelzohry.loadapp.R
 import kotlin.properties.Delegates
 
 class LoadingButton @JvmOverloads constructor(
@@ -49,7 +50,7 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     private val buttonText: String
-        get() = if (loadingState == LoadingState.Loading) "Downloading" else "Download"
+        get() = if (loadingState == LoadingState.Loading) "We are loading" else "Download"
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
