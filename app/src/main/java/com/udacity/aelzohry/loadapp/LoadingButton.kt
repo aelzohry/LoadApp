@@ -38,12 +38,18 @@ class LoadingButton @JvmOverloads constructor(
         .ofFloat(0f, 100f)
         .setDuration(5_000)
 
-    private var buttonState: ButtonState by Delegates.observable(ButtonState.Completed) { _, _, _ ->
+    var loadingState: LoadingState by Delegates.observable(LoadingState.Completed) { _, _, newValue ->
+        if (newValue == LoadingState.Loading) {
+            progress = 0f
+            valueAnimator.start()
+        } else {
+            valueAnimator.cancel()
+        }
         invalidate()
     }
 
     private val buttonText: String
-        get() = if (buttonState == ButtonState.Loading) "Downloading" else "Download"
+        get() = if (loadingState == LoadingState.Loading) "Downloading" else "Download"
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
@@ -52,22 +58,7 @@ class LoadingButton @JvmOverloads constructor(
         typeface = Typeface.create("", Typeface.BOLD)
     }
 
-    override fun performClick(): Boolean {
-        buttonState = when (buttonState) {
-            ButtonState.Completed -> ButtonState.Loading
-            ButtonState.Loading -> ButtonState.Completed
-        }
-
-        if (buttonState == ButtonState.Loading) {
-            progress = 0f
-            valueAnimator.start()
-        }
-        return super.performClick()
-    }
-
     init {
-        isClickable = true
-
         bgColor = (background as? ColorDrawable)?.color
             ?: ContextCompat.getColor(context, R.color.button_background)
 
@@ -114,7 +105,7 @@ class LoadingButton @JvmOverloads constructor(
         setBackgroundColor(bgColor)
 
         // Loading
-        if (buttonState == ButtonState.Loading) {
+        if (loadingState == LoadingState.Loading) {
             // Linear Progress
             paint.color = progressBackgroundColor
             canvas?.drawRect(0f, 0f, widthSize * progress / 100, heightSize, paint)
