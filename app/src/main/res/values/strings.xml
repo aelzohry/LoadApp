@@ -7,4 +7,14 @@
     <string name="download_option_glide">Glide - Image Loading Library by BumpTech</string>
     <string name="download_option_load_app">LoadApp - Current repository by Udacity</string>
     <string name="download_option_retrofit">Retrofit - Type-safe HTTP client for Android and Java by Square, Inc</string>
+
+    <string name="notification_channel_id">download_completion_channel</string>
+    <string name="notification_channel_name">Download Complete</string>
+    <string name="notification_channel_description">Download completion notifications</string>
+    <string name="notification_action_button">Details</string>
+    <string name="title_label">Title:</string>
+    <string name="url_label">URL:</string>
+    <string name="status_label">Status:</string>
+    <string name="select_file_message">Select file to download</string>
+    <string name="back">Back</string>
 </resources>

@@ -43,6 +43,7 @@
                 android:id="@+id/radio_option_glide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/half_padding"
                 android:checked="@{viewModel.downloadFile == DownloadFile.Glide}"
                 android:onClick="@{() -> viewModel.setDownloadFile(DownloadFile.Glide)}"
                 android:text="@string/download_option_glide" />
@@ -51,6 +52,7 @@
                 android:id="@+id/radio_option_load_app"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/half_padding"
                 android:checked="@{viewModel.downloadFile == DownloadFile.LoadApp}"
                 android:onClick="@{() -> viewModel.setDownloadFile(DownloadFile.LoadApp)}"
                 android:text="@string/download_option_load_app" />
@@ -59,6 +61,7 @@
                 android:id="@+id/radio_option_retrofit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/half_padding"
                 android:checked="@{viewModel.downloadFile == DownloadFile.Retrofit}"
                 android:onClick="@{() -> viewModel.setDownloadFile(DownloadFile.Retrofit)}"
                 android:text="@string/download_option_retrofit" />
