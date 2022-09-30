@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
-import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.DecelerateInterpolator
@@ -60,10 +59,10 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     init {
-        bgColor = (background as? ColorDrawable)?.color
-            ?: ContextCompat.getColor(context, R.color.button_background)
-
         context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
+            bgColor = getColor(R.styleable.LoadingButton_backgroundColor,
+                ContextCompat.getColor(context, R.color.button_background))
+
             textColor = getColor(R.styleable.LoadingButton_textColor,
                 ContextCompat.getColor(context, R.color.button_text))
 
@@ -103,7 +102,8 @@ class LoadingButton @JvmOverloads constructor(
         super.onDraw(canvas)
 
         // Background
-        setBackgroundColor(bgColor)
+        paint.color = bgColor
+        canvas?.drawRect(0f, 0f, widthSize, heightSize, paint)
 
         // Loading
         if (loadingState == LoadingState.Loading) {
